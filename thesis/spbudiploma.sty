@@ -43,6 +43,14 @@
     \addcontentsline{toc}{section}{#1}
 }
 
+\newcommand{\specialsubsection}[1]{
+    \phantomsection
+    \bigskip\smallskip\hspace{-13.8mm}
+    \normalfont\fontsize{16}{16}\textbf{#1}
+    \par\bigskip\normalfont\normalsize
+    \addcontentsline{toc}{subsection}{#1}
+}
+
 % Размеры заголовков разделов и подразделов
 \usepackage{titlesec}
 \titleformat{\section}
@@ -89,6 +97,8 @@
 
 \usepackage{url}
 \def\UrlBreaks{\do\/\do-}
+
+% todo: починить ссылку на список литературы
 
 % Список литературы
 \renewenvironment{thebibliography}[1]
