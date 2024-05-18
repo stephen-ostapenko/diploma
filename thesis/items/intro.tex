@@ -111,6 +111,7 @@ SMT-формулы обладают достаточно сильной выра
 \end{enumerate}
 
 % todo: дописать пример
+% todo: написать про coq и еще че-нибудь
 
 \begin{figure}[ht]
 \begin{center}
@@ -135,6 +136,52 @@ int foo(int x) {
 \end{minipage}
 \end{center}
 \end{figure}
+
+\begin{comment}
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolor}{rgb}{0.95,0.95,0.92}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolor},
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\ttfamily\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\small,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2,
+}
+
+\lstset{style=mystyle}
+
+\begin{lstlisting}[language=LLVM, caption=Заголовок]
+    call_block:
+        %child_hdl = call %coroutine_handle_t g_coro()
+        call void @set_child_hdl(ptr %promise, %coroutine_handle_t %child_hdl)
+        %suspend_result = call i8 @llvm.coro.suspend(token none, i1 false)
+        switch i8 %suspend_result, label %suspend [
+            i8 0, label %next_block
+            i8 1, label %cleanup
+        ]
+    next_block:
+        %child_promise = call ptr @get_promise(ptr %child_hdl)
+        %ret_val = call i32 @get_ret_val(ptr %10)
+    \end{lstlisting}
+
+\end{comment}
 
 Такой подход позволяет относительно эффективно искать различные пути исполнения программы и исследовать их: собирать ограничения на входные данные и их инварианты, которые сохраняются в процессе очередного исполнения. В дальнейшем собранные данные можно использовать для задач статического анализа программ, автоматической генерации тестового покрытия, поиска ошибок и уязвимостей в программах.
 
