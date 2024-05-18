@@ -12,12 +12,13 @@
 % Картинки (можно вставлять даже pdf)
 \usepackage[pdftex]{graphicx}
 
-\usepackage{amsthm,amssymb, amsmath}
+\usepackage{amsthm,amssymb,amsmath}
 \usepackage{textcomp}
 
 \usepackage{minted} % для примеров кода (требует параметра -shell-escape)
 \usemintedstyle{tango}
 \renewcommand{\theFancyVerbLine}{\normalsize \arabic{FancyVerbLine}}
+\usepackage{listings}
 
 \usepackage{comment}
 
@@ -49,6 +50,15 @@
 \include{items/intro}
 
 \include{items/problem}
+
+\include{items/lit-review}
+
+% датасет
+% * smt-comp
+% * usvm
+% метрики
+% roberta
+% gnn
 
 \section{глава}
 
