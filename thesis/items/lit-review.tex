@@ -44,7 +44,7 @@
 
 Чтобы ускорить работу, вершины дерева, отвечающие за эквивалентные выражения, склеиваются в одну, так что формула, на самом деле, превращается в ориентированный ациклический граф. Помимо этого, чтобы расширить распространение эмбеддинга с информацией, сохранённой в каждой вершине, к каждому ребру такого графа добавляется обратное ребро. Таким образом, информация начинает распространяться сразу во всех направлениях.
 
-Далее каждая вершина (переменная, константа или операция) кодируется с помощью техники one-hot-encoding, после чего векторы с полученными таким образом значениями отправляются в GNN\footnote{Более подробно про работу графовых нейронных сетей будет написано далее в соответствующей главе.}, на выходе у которой находится слой, собирающий эмбеддинги со всех вершин графа и предсказывающий для каждого SMT-решателя время, за которое он может выдать ответ на данной формуле. Для лучшего понимания, схема процесса изображена на рис~\ref{gnn-for-scheduling-process}.
+Далее каждая вершина (переменная, константа или операция) кодируется с помощью техники one-hot-encoding, после чего векторы с полученными таким образом значениями отправляются в GNN\footnote{Более подробно про работу графовых нейронных сетей будет написано далее в главе~\ref{gnn-architecture}.}, на выходе у которой находится слой, собирающий эмбеддинги со всех вершин графа и предсказывающий для каждого SMT-решателя время, за которое он может выдать ответ на данной формуле. Для лучшего понимания, схема процесса изображена на рис~\ref{gnn-for-scheduling-process}.
 
 % todo: тут должна быть ссылка на главу из основной части про GNN
 
@@ -78,6 +78,7 @@
 \end{figure}
 
 % эмбеддинги
+% дописать про GatedGraphConv https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.nn.conv.GatedGraphConv.html#torch_geometric.nn.conv.GatedGraphConv
 % слой голосования
 % итерации
 % результаты
@@ -96,3 +97,5 @@
 % https://www.semanticscholar.org/paper/SATformer%3A-Transformer-Based-UNSAT-Core-Learning-Shi-Li/06547a615390ba14d37c684136c30a4ac559d610
 % https://www.semanticscholar.org/paper/NeuroBack%3A-Improving-CDCL-SAT-Solving-using-Graph-Wang-Hu/a613142147ef740b2daf1265e23606c80d1c2bd2
 % https://www.semanticscholar.org/paper/Synthesizing-Smart-Solving-Strategy-for-Symbolic-Chen-Chen/c7f8cd87ae269bb8b85eeb627005b7884a81bee0
+% Combinatorial Optimization with Graph Convolutional Networks and Guided Tree Search https://arxiv.org/abs/1810.10659
+% Andrew W Senior, Richard Evans, John Jumper, James Kirkpatrick, Laurent Sifre, Tim Green, Chongli Qin, Augustin Žídek, Alexander WR Nelson, Alex Bridgland, et al. Improved protein structure prediction using potentials from deep learning. Nature, 577(7792):706–710, 2020.
