@@ -6,6 +6,23 @@
 \usepackage{paratype}
 \usepackage{minted} % для примеров кода (требует параметра -shell-escape)
 
+\usepackage{hyperref}
+\usepackage{xurl}
+
+\usepackage{makecell}
+
+\usepackage{comment}
+
+% ===============================================
+
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
+\newcommand{\fakesc}[1]{\uppercase{{\footnotesize #1}}}
+\renewcommand{\textsc}{\fakesc}
+
+% ===============================================
+
 \usetheme{metropolis}
 \usefonttheme[]{professionalfonts}  % запрещаем beamer'у перезаписывать мат. шрифты
 \metroset{numbering=fraction}
@@ -19,8 +36,7 @@
 \setbeamertemplate{title separator}{}
 \setbeamertemplate{footnote separator}{}
 
-
-\usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{./common/background_white.jpg}}
+% \usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{./common/background_white.jpg}}
 
 \logo{\vspace{-1.2cm}\includegraphics[width=6mm]{./common/short-v.pdf}\hspace*{1.08\textwidth}}
 
@@ -39,17 +55,19 @@
 
 \begin{document}
 
+
+
 \begin{frame}[plain]
   \begin{center}
-    \textbf{Имя и фамилия автора}
+    \textbf{Степан Остапенко}
 
-    {\Large\textbf{Тема работы: довольно длинное название строки на две минимум}}
+    {\Large\textbf{Проверка выполнимости SMT-формул с помощью нейронных сетей}}
 
     Выпускная квалификационная работа
 
-    {\small Научный руководитель: А.\,А.\,Выбегалло}
+    {\small Научный руководитель: Д.\,С.\,Шалымов}
 
-    ДАТА ЗАЩИТЫ
+    13.06.2024
   \end{center}
 
 
@@ -67,138 +85,385 @@
 
 
 
-\begin{frame}
-\frametitle{Введение в предметную область}
+\begin{frame}{Введение в предметную область}
+
+\begin{gather*}
+  ({\color{red}x}^2 + {\color{magenta}y} - {\color{blue}z}^2 = 2) \wedge ({\color{red}x}^2 + 2{\color{magenta}y} - 3{\color{blue}z}^2 \le 2) \wedge ({\color{red}x}^2 + 2{\color{magenta}y} - 4{\color{blue}z}^2 \ge 1),
+\end{gather*}
+
+\begin{center}
+где ${\color{red}x}, {\color{magenta}y}, {\color{blue}z} \in \mathbb{Z} \ \longrightarrow \ {\color{red}x} = 1, {\color{magenta}y} = 2, {\color{blue}z} = -1$.
+\end{center}
 
 \begin{itemize}
-\item О чём здесь вообще речь? Для чего вообще этим всем стоит заниматься?
-\item В чём актуальность работы?
-\item Кто ещё этим занимается, с кем мы будем сравниваться?
-\item Этот слайд необходим для того, чтобы постановка задачи была понятнее.
-\item Вряд ли стоит делать больше двух таких слайдов, иначе вы не успеете рассказать о своей работе.
-\item На введение в предметную область должно уйти не более 15\% времени вашего доклада.
+  \item $\mathbb{B}$ --- \texttt{true}, \texttt{false}, логические операции;
+  \item $\mathbb{Z}$ --- целые числа, арифметика, сравнения;
+  \item $\mathbb{R}$ --- вещественные числа, арифметика, сравнения;
+  \item \texttt{BitVec} --- битовые векторы, логические и арифметические операции;
 \end{itemize}
-
 
 \end{frame}
 
-\begin{frame}
-\frametitle{Постановка задачи}
+
+
+\begin{frame}{Зачем это нужно}
+
+\begin{minipage}{0.5\textwidth}
+
+\textbf{Применения}
+\begin{itemize}
+  \item составление расписания и планирование,
+  \item верификация АО и ПО,
+  \item вывод типов,
+  \item {\color{magenta}символьное исполнение},
+  \item статический анализ программ.
+\end{itemize}
+
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+
+\begin{figure}[ht]
+\begin{center}
+  \includegraphics[scale=0.125]{./assets/smt-solver-working-scheme.png}
+  \caption{\label{smt-solver-working-scheme} Схема SMT-решателя \cite{smt-solver-working-scheme}.}
+\end{center}
+\end{figure}
+
+\end{minipage}
+
+\end{frame}
+
+
+
+\begin{frame}{Постановка задачи}
+
+\begin{figure}[ht]
+\begin{center}
+  \includegraphics[scale=0.4]{./assets/problem-statement.pdf}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+
+
+\begin{frame}{Данные для обучения и оценки качества}
+
+\begin{minipage}{0.5\textwidth}
+
+\textbf{\texttt{SMT-COMP}} \cite{smt-comp-2023-benchmarks}
+
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+
+\textbf{\texttt{USVM}} \cite{usvm-github}
+
+\end{minipage}
+
+\begin{minipage}{0.5\textwidth}
+
+\begin{figure}[ht]
+\begin{center}
+  \includegraphics[scale=0.45]{./assets/smt-comp-datasets.pdf}
+\end{center}
+\end{figure}
+
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+
+Наборы данных, состоящие из формул, возникших в процессе работы символьного движка:
+
+\begin{itemize}
+  \item обучающий набор --- запуск движка на нём же;
+  \item 18 валидационных --- запуск движка на разных проектах на JVM-языках.
+\end{itemize}
+
+\end{minipage}
+
+\end{frame}
+
+
+
+\begin{frame}{Метрики}
+
+\begin{figure}[ht]
+\begin{center}
+  \includegraphics[scale=0.35]{./assets/roc-auc-vs-au-prc.jpg}
+  \caption{\label{roc-auc-and-avg-prc} Площадь под ROC-кривой и площадь под PR-кривой \cite{roc-auc-and-avg-prc}.}
+\end{center}
+\end{figure}
+
+% todo: перерисовать картинку
+
+\end{frame}
+
+
+
+\begin{frame}{Архитектура}
+
+\begin{minipage}{0.5\textwidth}
+
+\begin{figure}[ht]
+\begin{center}
+  \includegraphics[scale=0.37]{./assets/formula-ast-talk.pdf}
+\end{center}
+\end{figure}
+
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+
+В качестве графа вычислений берём AST формулы, превращённое в ациклический граф.
+
+Слева пример для \\ {\small $(64 \le x) \wedge (64 \le y) \wedge ((x + y) \cdot 2 < 2)$}
+
+\end{minipage}
+
+\end{frame}
+
+
+
+\begin{frame}{Как собрать детей по-быстрому?}
+
+SAGE Convolution \cite{sage-conv-paper}:
+
+\begin{equation*}
+  x_v' = \sigma \left(W_3 \cdot \left(W_1 \cdot x_v + W_2 \cdot \underset{u \in \mathcal{N}(v)}{\text{\textsc{mean}}} x_u \right) + b \right)
+\end{equation*}
+
+\end{frame}
+
+
+
+\begin{frame}{Как собрать детей по-быстрому?}
+
+Transformer Convolution \cite{transformer-conv-paper}:
+
+\begin{equation*}
+  \alpha_{u} = \underset{u \in \mathcal{N}(v)}{\text{\textsc{softmax}}} \left[\frac{(W_3 \cdot x_v)^T (W_4 \cdot x_u)}{\sqrt d} \right]
+\end{equation*}
+
+\begin{equation*}
+  x_v' = W_1 \cdot x_v + \sum_{u \in \mathcal{N}(v)} \alpha_u W_2 \cdot x_u
+\end{equation*}
+
+\end{frame}
+
+
+
+\begin{frame}{Начальные состояния}
+
+Проблема --- откуда взять начальные состояния?
+
+\begin{itemize}
+  \item Замена $m, k, n \rightarrow \texttt{Var[Int]}$; $2.8, 2.4, 3.0 \rightarrow \texttt{Val[Real]}$;
+\end{itemize}
+
+\vspace{1mm}\hrule\vspace{1mm}
+
+\begin{minipage}{0.5\textwidth}
+
+\textit{Для переменных:}
+
+\begin{itemize}
+  \item Случайные выученные векторы;
+  \item Позиционное кодирование;
+\end{itemize}
+
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+
+\textit{Для констант:}
+
+\begin{itemize}
+  \item Векторы с учётом групп (бинов) \cite{embeddings-for-numerical-features-paper};
+  \item Преобразование с Fourier Feature Mapping \cite{embeddings-for-numerical-features-paper};
+\end{itemize}
+
+\end{minipage}
+
+\end{frame}
+
+
+
+\begin{frame}{Результаты SAGE Convolution (\texttt{SMT-COMP})}
+
+\begin{minipage}{0.5\textwidth}
+
+\begin{figure}[ht]
+\begin{center}
+  \includegraphics[scale=0.33]{./assets/smt-comp-roc-auc.pdf}
+\end{center}
+\end{figure}
+
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+
+\begin{figure}[ht]
+\begin{center}
+  \includegraphics[scale=0.33]{./assets/smt-comp-ap.pdf}
+\end{center}
+\end{figure}
+
+\end{minipage}
+  
+\end{frame}
+
+
+
+\begin{frame}{Символьное исполнение}
+
+\begin{figure}[ht]
+\begin{center}
+  \includegraphics[scale=0.53]{./assets/symbex-ranking-1.pdf}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+
+
+\begin{frame}[noframenumbering]{Символьное исполнение}
+
+\begin{figure}[ht]
+\begin{center}
+  \includegraphics[scale=0.53]{./assets/symbex-ranking-2.pdf}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+
+
+\begin{frame}{Результаты SAGE Convolution (\texttt{USVM})}
+
+\begin{minipage}{0.5\textwidth}
+
+\begin{figure}[ht]
+\begin{center}
+  \includegraphics[scale=0.33]{./assets/usvm-roc-auc.pdf}
+\end{center}
+\end{figure}
+
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+
+\begin{figure}[ht]
+\begin{center}
+  \includegraphics[scale=0.33]{./assets/usvm-ap.pdf}
+\end{center}
+\end{figure}
+
+\end{minipage}
+
+\end{frame}
+
+
+
+\begin{frame}{Дальнейшее развитие}
+
+\begin{itemize}
+  \item Подбор гиперпараметров.
+  \item Архитектурные улучшения.
+  \item Аугментации данных.
+  \item Постановка задачи ранжирования.
+  \item Эффективная реализация и внедрение.
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}{Итоги работы}
+
 \begin{enumerate}
-\item Разработать алгоритм решения задачи путешествующего сейлсмена\footnote{Крайне рекомендуется избегать англицизмов --- старайтесь использовать принятые в~русском языке термины.}, работающий за полиномиальное время.
-\item Построить программную implementation\footnote{Так тоже не надо.}, протестировать её~производительность и сравнить с конкурентами.
-\item Оформить результаты работы в виде доклада на~STOC\footnote{Злоупотреблять аббревиатурами также не стоит, используйте только действительно общепринятые и всем известные сокращения.}.
+  \item Спроектирована, обучена и протестирована первая нейросеть для предсказания выполнимости SMT-формул.
+  \item Качество решения общей задачи плохое, но в случае одного из возможных практических применений результаты выглядят хорошо.
+  \item Есть много идей для дальнейшего развития проекта.
 \end{enumerate}
+
+\vspace{2mm}\hrule
+
+\begin{minipage}{0.5\textwidth}
+\begin{center}
+
+Степан Остапенко. tg: @flaax, \\ stepanos2002@gmail.com
+
+\end{center}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+\begin{center}
+
+kek
+
+\end{center}
+\end{minipage}
+
 \end{frame}
 
-\begin{frame}{Задача 1: формула с пояснениями}
-\small
-    Фильтр минимизирует среднеквадратическое отклонение цвета пикселя.
-    
-    \begin{equation*}\label{eq:wiener_nsr}
-    \hat{Y}(i, j) = \left[ \frac{\hat{H}^*(i, j)}{\left|\hat{H}(i, j)\right|^2 + \frac{S_n(i, j)}{S_s(i, j)}} \right] \times \hat{F}(i, j),
-    \end{equation*}
-\begin{itemize}
-    \item $Y$ -- восстановленное изображение,  $F$ -- наблюдаемое изображение,
-    \item $H$ -- функция рассеивания, $H^*$ --комплексное сопряжение $H$,
-    \item $S_n$ -- энергетический спектр шума -- $\left| \hat{N} \right|^2$,
-    \item $S_s$ -- энергетический спектр исходного изображения -- $\left| \hat{F} \right|^2$,
-    \item $\times$ -- умножение комплексных чисел.
-\end{itemize}
+
+
+\begin{frame}[noframenumbering, plain, allowframebreaks]{Источники}
+
+\begin{thebibliography}{1}
+
+\setbeamertemplate{bibliography item}[text]
+
+\bibitem{smt-solver-working-scheme} SC$^{\text{2}}$: Satisfiability Checking Meets Symbolic Computation --- Scientific Figure on ResearchGate. Available from: \url{https://www.researchgate.net/figure/The-functioning-of-SMT-solvers_fig1_305214266} (дата обр. 11.06.2024).
+
+\bibitem{smt-comp-2023-benchmarks} SMT-COMP 2023 benchmarks. URL: \url{https://smt-comp.github.io/2023/benchmarks.html} (дата обр. 20.05.2024).
+
+\bibitem{usvm-github} USVM on github. URL: \url{https://github.com/UnitTestBot/usvm} (дата обр. 10.06.2024).
+
+\bibitem{roc-auc-and-avg-prc} URL: \url{https://juandelacalle.medium.com/how-and-why-i-switched-from-the-roc-curve-to-the-precision-recall-curve-to-analyze-my-imbalanced-6171da91c6b8} (дата обр. 27.05.2024).
+
+\bibitem{sage-conv-paper} William L. Hamilton et al. <<Inductive Representation Learning on Large Graphs>>.  \textit{ArXiv abs:1706.02216} (2017).
+
+\bibitem{transformer-conv-paper} Yunsheng Shi et al. <<Masked Label Prediction: Unified Message Passing Model for Semi-Supervised Classification>>. \textit{ArXiv abs:2009.03509} (2021).
+
+\bibitem{embeddings-for-numerical-features-paper} Yury Gorishniy, Ivan Rubachev and Artem Babenko. <<On Embeddings for Numerical Features in Tabular Deep Learning>>. \textit{Neural Information Processing Systems} (NeurIPS '2022).
+
+\end{thebibliography}
+
 \end{frame}
 
 
-\begin{frame}[fragile]
-\frametitle{Задача 2: код на языке программирования\footnote{Увлекаться кодом на слайдах не стоит, зато структурные и иные диаграммы обычно смотрятся хорошо.}}
-\begin{minted}{kotlin}
-fun main() {
-    val name = "stranger"
-    println("Hi, $name!")
-    print("Current count:")
-    for (i in 0..10) {
-        print(" $i")
-    }
-}
-\end{minted}
-\end{frame}
 
-\begin{frame}{Задача 2: результаты измерений в таблице}
-\centering
-\begin{tabular}{lccc}
-    Имя & Работа 1 & Работа 2 & Итог \\
-\hline\hline
-    Алиса & 8.0 & 9.0 & 8.5 \\
-    Боб & 9.0 & 9.8 & 9.4 \\
-    Чак & 9.1 & 9.3 & 9.2 \\
+\begin{frame}[noframenumbering]{Параметры датасетов с SMT-COMP}
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{r|cccc}
+    Датасет & \makecell{Количество \\ формул} & \makecell{Средний \\ размер \\ формулы} & \makecell{Средняя \\ глубина \\ формулы} & \makecell{Доля \\ выполнимых \\ формул} \\
+    \hline \hline
+    \rule{0pt}{2.5ex}
+    \texttt{BitVec}  &  33\,797 & 1181.92 & 85.45 & 0.378 \\
+    \texttt{SymbEx}  &  85\,078 &  669.46 & 49.24 & 0.610 \\
+    \texttt{QuaFree} & 123\,396 &  965.16 & 48.71 & 0.622 \\
 \end{tabular}
-
-\begin{block}{Пояснения к таблице}
-  \begin{itemize}
-  \item Таблицы могут требовать пояснений.
-  \item Что это за величины? Откуда они взялись?
-  \item Какие выводы можно сделать?
-  \end{itemize}
-\end{block}
-
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Задача 2: результаты сравнения с конкурентами\footnote{Понятна ли ваша диаграмма? Не забыли ли вы легенду?}\footnote{Контрастно ли изображение? Помните, на проекторе всё может выглядеть хуже.}}
-\begin{center}
-\includegraphics[width=11cm]{images/graph.png}
+\caption{Параметры датасетов, полученных из данных с соревнования SMT-COMP~2023~\cite{smt-comp-2023-benchmarks}.}
 \end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Задача 3: основные трудности}
-\begin{itemize}
-\item Мы всё классно сделали, но рецензенты STOC сформулировали ряд претензий к~работе, обозвали нас идиотами и отказались пускать на конференцию.
-\item Все замечания были исправлены, попробуем FOCS\footnote{Не забывайте про нежелательность англицизмов и аббревиатур.}!
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Дополнительный слайд по работе в целом\footnote{Кстати, слайды с длинными перечислениями выглядят плохо. Старайтесь их избегать.}}
-\begin{itemize}
-\item Освоенные и применённые технологии
-\item Информация о внедрении
-\item Полученные в ходе выполнения работы навыки
-\item Вынесенные уроки
-\item Реальные планы на будущее (не надо фантазировать!)
-\item Ссылки на цитированную литературу --- их можно вынести в конец слайдов, но во время доклада не показывать.
-\end{itemize}
+\end{table}
 
 \end{frame}
 
 
-\begin{frame}
-\frametitle{Результаты работы}
 
-\begin{enumerate}
-\item Разработан полиномиальный алгоритм решения задачи коммивояжёра.
-\item Программная реализация демонстрирует высочайшую производительность и превосходит все известные аналоги.
-\item Результаты подготовлены для представления на~FOCS.
-\end{enumerate}
+\begin{frame}[noframenumbering]{Параметры датасетов, собранных с USVM}
 
-\vspace{5mm}\hrule\vspace{5mm}
-
+\begin{table}[ht]
 \begin{center}
-Имя, фамилия и контакты автора,\\ссылка на материалы работы, QR-код.
+\begin{tabular}{r|cccc}
+    Датасет & \makecell{Количество \\ формул} & \makecell{Средний \\ размер \\ формулы} & \makecell{Средняя \\ глубина \\ формулы} & \makecell{Доля \\ выполнимых \\ формул} \\
+    \hline \hline
+    \rule{0pt}{2.5ex}
+    \texttt{u-test}  & 153\,778 & 522.84 &  5.18 & 0.038 \\
+    \texttt{the-alg} & 181\,633 & 277.03 & 23.94 & 0.066 \\
+    \texttt{u-core}  & 192\,744 & 179.42 & 12.19 & 0.066 \\
+\end{tabular}
+\caption{Параметры тренировочных датасетов, собранных в процессе работы символьного движка USVM \cite{usvm-github}.}
 \end{center}
+\end{table}
 
-\end{frame}
-
-\begin{frame}[noframenumbering,plain]
-\frametitle{}
-\begin{center}
-  \Huge Спасибо за внимание!
-
-  Ваши вопросы?
-
-  {\color{red}Этот слайд не нужен! Удалите его\footnote{Сноски на слайдах тоже удалите: не нужно усложнять их структуру и содержимое. Не~забывайте, что многое можно просто сказать словами.}!}
-\end{center}
 \end{frame}
 
 
