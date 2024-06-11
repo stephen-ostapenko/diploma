@@ -125,7 +125,7 @@
 \begin{figure}[ht]
 \begin{center}
   \includegraphics[scale=0.125]{./assets/smt-solver-working-scheme.png}
-  \caption{\label{smt-solver-working-scheme} Схема SMT-решателя \cite{smt-solver-working-scheme}.}
+  \caption{Схема SMT-решателя \cite{smt-solver-working-scheme}.}
 \end{center}
 \end{figure}
 
@@ -137,11 +137,9 @@
 
 \begin{frame}{Постановка задачи}
 
-\begin{figure}[ht]
 \begin{center}
   \includegraphics[scale=0.4]{./assets/problem-statement.pdf}
 \end{center}
-\end{figure}
 
 \end{frame}
 
@@ -162,11 +160,9 @@
 
 \begin{minipage}{0.5\textwidth}
 
-\begin{figure}[ht]
 \begin{center}
   \includegraphics[scale=0.45]{./assets/smt-comp-datasets.pdf}
 \end{center}
-\end{figure}
 
 \end{minipage}%
 \begin{minipage}{0.5\textwidth}
@@ -189,7 +185,7 @@
 \begin{figure}[ht]
 \begin{center}
   \includegraphics[scale=0.35]{./assets/roc-auc-vs-au-prc.jpg}
-  \caption{\label{roc-auc-and-avg-prc} Площадь под ROC-кривой и площадь под PR-кривой \cite{roc-auc-and-avg-prc}.}
+  \caption{Площадь под ROC-кривой и площадь под PR-кривой \cite{roc-auc-and-avg-prc}.}
 \end{center}
 \end{figure}
 
@@ -203,20 +199,121 @@
 
 \begin{minipage}{0.5\textwidth}
 
-\begin{figure}[ht]
 \begin{center}
   \includegraphics[scale=0.37]{./assets/formula-ast-talk.pdf}
 \end{center}
-\end{figure}
 
 \end{minipage}%
 \begin{minipage}{0.5\textwidth}
 
 В качестве графа вычислений берём AST формулы, превращённое в ациклический граф.
 
-Слева пример для \\ {\small $(64 \le x) \wedge (64 \le y) \wedge ((x + y) \cdot 2 < 2)$}
+\medskip
+
+Слева пример для формулы \\ {\small $(64 \le x) \wedge (64 \le y) \wedge ((x + y) \cdot 2 < 2)$}
 
 \end{minipage}
+
+\end{frame}
+
+
+
+\begin{frame}{Архитектура}
+
+\begin{minipage}{0.5\textwidth}
+
+\begin{center}
+  \includegraphics[scale=0.37]{./assets/formula-ast-talk.pdf}
+\end{center}
+
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+
+\begin{center}
+  \includegraphics[scale=0.35]{./assets/message-passing-nn-talk.pdf}
+\end{center}
+
+\end{minipage}
+
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{center}
+  \includegraphics[scale=0.45]{./assets/formula-ast-talk.pdf}
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}[noframenumbering]
+
+\begin{center}
+  \includegraphics[scale=0.45]{./assets/formula-ast-talk-0.pdf}
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}[noframenumbering]
+
+\begin{center}
+  \includegraphics[scale=0.45]{./assets/formula-ast-talk-1.pdf}
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}[noframenumbering]
+
+\begin{center}
+  \includegraphics[scale=0.45]{./assets/formula-ast-talk-2.pdf}
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}[noframenumbering]
+
+\begin{center}
+  \includegraphics[scale=0.45]{./assets/formula-ast-talk-3.pdf}
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}[noframenumbering]
+
+\begin{center}
+  \includegraphics[scale=0.45]{./assets/formula-ast-talk-4.pdf}
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}[noframenumbering]
+
+\begin{center}
+  \includegraphics[scale=0.45]{./assets/formula-ast-talk-5.pdf}
+\end{center}
+
+\end{frame}
+
+
+
+\begin{frame}[noframenumbering]
+
+\begin{center}
+  \includegraphics[scale=0.45]{./assets/formula-decoder.pdf}
+\end{center}
 
 \end{frame}
 
@@ -255,7 +352,7 @@ Transformer Convolution \cite{transformer-conv-paper}:
 Проблема --- откуда взять начальные состояния?
 
 \begin{itemize}
-  \item Замена $m, k, n \rightarrow \texttt{Var[Int]}$; $2.8, 2.4, 3.0 \rightarrow \texttt{Val[Real]}$;
+  \item Замена $m$, $k$, $n$ $\rightarrow$ \texttt{Var[Int]}; \hfill $2.8$, $2.4$, $3.0$ $\rightarrow$ \texttt{Val[Real]};
 \end{itemize}
 
 \vspace{1mm}\hrule\vspace{1mm}
@@ -312,11 +409,9 @@ Transformer Convolution \cite{transformer-conv-paper}:
 
 \begin{frame}{Символьное исполнение}
 
-\begin{figure}[ht]
 \begin{center}
   \includegraphics[scale=0.53]{./assets/symbex-ranking-1.pdf}
 \end{center}
-\end{figure}
 
 \end{frame}
 
@@ -324,11 +419,9 @@ Transformer Convolution \cite{transformer-conv-paper}:
 
 \begin{frame}[noframenumbering]{Символьное исполнение}
 
-\begin{figure}[ht]
 \begin{center}
   \includegraphics[scale=0.53]{./assets/symbex-ranking-2.pdf}
 \end{center}
-\end{figure}
 
 \end{frame}
 
@@ -393,7 +486,9 @@ Transformer Convolution \cite{transformer-conv-paper}:
 \begin{minipage}{0.5\textwidth}
 \begin{center}
 
-kek
+\includegraphics[scale=0.03]{./assets/booklet-qr.pdf}
+
+{\small \url{https://qrco.de/bf9EBt}}
 
 \end{center}
 \end{minipage}
@@ -428,17 +523,42 @@ kek
 
 
 
+\begin{frame}[noframenumbering]{Параметры обучения}
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{cc}
+  \hline
+  размерность эмбеддинга & 32 \\
+  \hline
+  функция потерь         & \textit{Cross-Entropy} \\
+  оптимизатор            & \textit{AdamW} \\
+  шаг обучения           & $10^{-4}$ \\
+  штраф за веса          & $10^{-3}$ \\
+  расписание             & \textit{Reduce LR On Plateau} \\
+  \hline
+  \texttt{val} выборка   & 15\% \\
+  \texttt{test} выборка  & 10\% \\
+  количество эпох        & 100
+\end{tabular}
+\end{center}
+\end{table}
+
+\end{frame}
+
+
+
 \begin{frame}[noframenumbering]{Параметры датасетов с SMT-COMP}
 
 \begin{table}[ht]
 \begin{center}
 \begin{tabular}{r|cccc}
-    Датасет & \makecell{Количество \\ формул} & \makecell{Средний \\ размер \\ формулы} & \makecell{Средняя \\ глубина \\ формулы} & \makecell{Доля \\ выполнимых \\ формул} \\
-    \hline \hline
-    \rule{0pt}{2.5ex}
-    \texttt{BitVec}  &  33\,797 & 1181.92 & 85.45 & 0.378 \\
-    \texttt{SymbEx}  &  85\,078 &  669.46 & 49.24 & 0.610 \\
-    \texttt{QuaFree} & 123\,396 &  965.16 & 48.71 & 0.622 \\
+  Датасет & \makecell{Количество \\ формул} & \makecell{Средний \\ размер \\ формулы} & \makecell{Средняя \\ глубина \\ формулы} & \makecell{Доля \\ выполнимых \\ формул} \\
+  \hline \hline
+  \rule{0pt}{2.5ex}
+  \texttt{BitVec}  &  33\,797 & 1181.92 & 85.45 & 0.378 \\
+  \texttt{SymbEx}  &  85\,078 &  669.46 & 49.24 & 0.610 \\
+  \texttt{QuaFree} & 123\,396 &  965.16 & 48.71 & 0.622 \\
 \end{tabular}
 \caption{Параметры датасетов, полученных из данных с соревнования SMT-COMP~2023~\cite{smt-comp-2023-benchmarks}.}
 \end{center}
@@ -453,12 +573,12 @@ kek
 \begin{table}[ht]
 \begin{center}
 \begin{tabular}{r|cccc}
-    Датасет & \makecell{Количество \\ формул} & \makecell{Средний \\ размер \\ формулы} & \makecell{Средняя \\ глубина \\ формулы} & \makecell{Доля \\ выполнимых \\ формул} \\
-    \hline \hline
-    \rule{0pt}{2.5ex}
-    \texttt{u-test}  & 153\,778 & 522.84 &  5.18 & 0.038 \\
-    \texttt{the-alg} & 181\,633 & 277.03 & 23.94 & 0.066 \\
-    \texttt{u-core}  & 192\,744 & 179.42 & 12.19 & 0.066 \\
+  Датасет & \makecell{Количество \\ формул} & \makecell{Средний \\ размер \\ формулы} & \makecell{Средняя \\ глубина \\ формулы} & \makecell{Доля \\ выполнимых \\ формул} \\
+  \hline \hline
+  \rule{0pt}{2.5ex}
+  \texttt{u-test}  & 153\,778 & 522.84 &  5.18 & 0.038 \\
+  \texttt{the-alg} & 181\,633 & 277.03 & 23.94 & 0.066 \\
+  \texttt{u-core}  & 192\,744 & 179.42 & 12.19 & 0.066 \\
 \end{tabular}
 \caption{Параметры тренировочных датасетов, собранных в процессе работы символьного движка USVM \cite{usvm-github}.}
 \end{center}
