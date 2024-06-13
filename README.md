@@ -6,8 +6,8 @@
 
 ## Материалы
 
-* [Текст ВКР](thesis/thesis-main.pdf)
-* [Презентация](slides/slides.pdf)
+* [Текст ВКР](https://raw.githubusercontent.com/stephen-ostapenko/diploma/main/thesis/thesis-main.pdf)
+* [Презентация](https://raw.githubusercontent.com/stephen-ostapenko/diploma/main/slides/slides.pdf)
 
 ## Ссылки на код
 
