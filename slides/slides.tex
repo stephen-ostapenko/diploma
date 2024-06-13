@@ -65,7 +65,9 @@
 
     Выпускная квалификационная работа
 
-    {\small Научный руководитель: Д.\,С.\,Шалымов}
+    {\small Научный руководитель: Дмитрий Сергеевич Шалымов}
+
+    {\small Научный консультант: Дмитрий Аркадьевич Иванов}
 
     13.06.2024
   \end{center}
@@ -154,7 +156,7 @@
 \end{minipage}%
 \begin{minipage}{0.5\textwidth}
 
-\textbf{\texttt{USVM}} \cite{usvm-github}
+\textbf{\texttt{USVM}} \cite{usvm-github} \cite{usvm-diploma}
 
 \end{minipage}
 
@@ -206,7 +208,7 @@
 \end{minipage}%
 \begin{minipage}{0.5\textwidth}
 
-В качестве графа вычислений берём AST формулы, превращённое в ациклический граф.
+В качестве графа вычислений берём AST формулы, превращённое в ориентированный ациклический граф.
 
 \medskip
 
@@ -474,7 +476,7 @@ Transformer Convolution \cite{transformer-conv-paper}:
 
 \begin{enumerate}
   \item Спроектирована, обучена и протестирована первая нейросеть для предсказания выполнимости SMT-формул.
-  \item Качество решения общей задачи плохое, но в случае одного из возможных практических применений результаты выглядят хорошо.
+  \item Качество решения общей задачи плохое, но в случае одного из возможных практических применений результаты выглядят многообещающе.
   \item Есть много идей для дальнейшего развития проекта.
 \end{enumerate}
 
@@ -513,6 +515,8 @@ Transformer Convolution \cite{transformer-conv-paper}:
 
 \bibitem{usvm-github} USVM on github. URL: \url{https://github.com/UnitTestBot/usvm} (дата обр. 10.06.2024).
 
+\bibitem{usvm-diploma} Поспелов Сергей Андреевич. <<Проектирование и разработка универсальной символьной виртуальной машины>>. \textit{Бакалаврская выпускная квалификационная работа}. URL: \url{http://hdl.handle.net/11701/42155}. СПбГУ, 2023.
+
 \bibitem{roc-auc-and-avg-prc} URL: \url{https://juandelacalle.medium.com/how-and-why-i-switched-from-the-roc-curve-to-the-precision-recall-curve-to-analyze-my-imbalanced-6171da91c6b8} (дата обр. 27.05.2024).
 
 \bibitem{sage-conv-paper} William L. Hamilton et al. <<Inductive Representation Learning on Large Graphs>>.  \textit{ArXiv abs:1706.02216} (2017).
@@ -530,6 +534,8 @@ Transformer Convolution \cite{transformer-conv-paper}:
 \bibitem{gnn-for-scheduling-paper} Jan H\r{u}la, David Moj\v{z}\'{\i}\v{s}ek and Mikol\'{a}\v{s} Janota. <<Graph Neural Networks for Scheduling of SMT Solvers>>. \textit{IEEE 33rd International Conference on Tools with Artificial Intelligence} (ICTAI '2021), pp. 447--451. IEEE, 2021.
 
 \bibitem{neurosat-paper} Daniel Selsam, Matthew Lamm, Benedikt B\"{u}nz, Percy Liang, Leonardo Mendonça de Moura and David L. Dill. <<Learning a SAT Solver from Single-Bit Supervision>>. \textit{ArXiv abs:1802.03685} (2018).
+
+\bibitem{azat} Валеев Азат Рустамович. <<Добавление признаков композиций в функцию потерь модели MusicTransformer для настраиваемой генерации музыки>>. \textit{Бакалаврская выпускная квалификационная работа}. СПбГУ, 2023.
 
 \end{thebibliography}
 
@@ -685,7 +691,7 @@ Transformer Convolution \cite{transformer-conv-paper}:
   \texttt{the-alg} & 181\,633 & 277.03 & 23.94 & 0.066 \\
   \texttt{u-core}  & 192\,744 & 179.42 & 12.19 & 0.066 \\
 \end{tabular}
-\caption{Параметры тренировочных датасетов, собранных в процессе работы символьного движка USVM \cite{usvm-github}.}
+\caption{Параметры тренировочных датасетов, собранных в процессе работы символьного движка USVM \cite{usvm-github} \cite{usvm-diploma}.}
 \end{center}
 \end{table}
 
