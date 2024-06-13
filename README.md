@@ -1,19 +1,24 @@
-# bsse-latex-templates - LaTeX-шаблоны для СП МКН СПбГУ (2022)
+# Проверка выполнимости SMT-формул с помощью нейронных сетей
 
+*Остапенко Степан Сергеевич*
 
-## Шаблон для слайдов (slides)
+Выпускная квалификационная работа, 2024
 
-Шаблон рекомендован для использования на защитах проектов и  выпускных квалификационных работ. [Пример](slides/slides.pdf).
+## Материалы
 
-## Шаблон для выпускной работы (thesis):
+* [Текст ВКР](thesis/thesis-main.pdf)
+* [Презентация](slides/slides.pdf)
 
-Шаблон сделан на основе шаблона [ВКР СПбГУ от Николая Тоскина](https://github.com/itonik/spbu_diploma) с рядом модификаций
-в сторону упрощения структуры работы. [Пример](thesis/thesis-main.pdf).
+## Ссылки на код
 
-### Структура
+* [Основной код (архитектура модели, обучение и валидация)](https://github.com/vlomshakov/ksmt/tree/neurosmt-training/ksmt-neurosmt/src/main/python)
+* [Предобработка данных](https://github.com/vlomshakov/ksmt/tree/neurosmt-training/ksmt-neurosmt/utils/src/main/kotlin/io/ksmt/solver/neurosmt)
+* [API для использования модели](https://github.com/vlomshakov/ksmt/tree/neurosmt-training/ksmt-neurosmt/src/main/kotlin/io/ksmt/solver/neurosmt)
+* [Сбор формул с USVM](https://github.com/stephen-ostapenko/usvm/tree/expr-collector)
+* [Эксперимент с трансформерами](https://github.com/stephen-ostapenko/neurosmt-transformers-experiment/)
 
-* spbudiploma.sty - стилевой файл.
-* titlepage.tex - титульный лист.
-* thesis-main.tex - основной файл.
-* items/ - каталог с основными элементами текста (введение, постановка задачи, основные разделы и заключение).
+---
 
+## Шаблон для текста ВКР
+
+Шаблон сделан на основе шаблона [ВКР СПбГУ от Николая Тоскина](https://github.com/itonik/spbu_diploma) с рядом модификаций в сторону упрощения структуры работы.
